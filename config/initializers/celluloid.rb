@@ -1,3 +1,3 @@
-require 'celluloid/zmq'
 
-Celluloid::ZMQ.init
+#Celluloid::ZMQ.init
+require 'ffi-rzmq'

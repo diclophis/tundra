@@ -1,14 +1,4 @@
 GIT
-  remote: git@github.com:celluloid/celluloid-zmq
-  revision: 4c2ab1af7b757ab7b5f4758afe09743c141c46ea
-  branch: master
-  specs:
-    celluloid-zmq (0.15.0)
-      celluloid (>= 0.15.0)
-      ffi
-      ffi-rzmq
-
-GIT
   remote: git@github.com:ddollar/foreman.git
   revision: 1905a7c310ded5f9ffab9b8911d9795d7924697d
   specs:
@@ -62,8 +52,6 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    celluloid (0.15.2)
-      timers (~> 1.1.0)
     cliver (0.3.2)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -159,7 +147,6 @@ GEM
     thread_safe (0.1.3)
       atomic
     tilt (1.4.1)
-    timers (1.1.0)
     tins (0.13.2)
     treetop (1.4.15)
       polyglot
@@ -176,7 +163,6 @@ DEPENDENCIES
   bourbon
   capistrano
   capistrano-rbenv
-  celluloid-zmq!
   coffee-rails
   ffi-rzmq
   foreman!

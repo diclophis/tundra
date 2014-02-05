@@ -27,9 +27,6 @@ gem 'newrelic_rpm'
 # FFI bindings for ZeroMQ so the library can be used under JRuby and other FFI-compliant ruby runtimes
 gem 'ffi-rzmq'
 
-# Celluloid actors that talk over the 0MQ protocol
-gem 'celluloid-zmq', :git => 'git@github.com:celluloid/celluloid-zmq', :branch => 'master'
-
 # New wave Internationalization support for Ruby.
 gem 'i18n'
 

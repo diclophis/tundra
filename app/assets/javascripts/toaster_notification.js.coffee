@@ -1,4 +1,4 @@
-total_visible = 1
+total_visible = 5
 max_pending = total_visible - 2
 events = null
 
@@ -21,8 +21,7 @@ this.toaster_notification = (message) ->
     eve.className = "recent"
     eve.innerHTML = message
     events.appendChild(eve)
-    setTimeout(rotate, 100)
-    # window.setTimeout(feed, 2000)
+    setTimeout(rotate, 200)
 
 this.toaster_notification_create = () ->
   events = document.getElementById("events")
