@@ -27,6 +27,9 @@ gem 'ffi-rzmq'
 # Celluloid actors that talk over the 0MQ protocol
 gem 'celluloid-zmq', :git => 'git@github.com:celluloid/celluloid-zmq', :branch => 'master'
 
+# New wave Internationalization support for Ruby.
+gem 'i18n'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', :require => false

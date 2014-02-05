@@ -175,6 +175,7 @@ DEPENDENCIES
   coffee-rails
   ffi-rzmq
   foreman!
+  i18n
   newrelic_rpm
   poltergeist
   puma
