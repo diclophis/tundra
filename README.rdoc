@@ -1,0 +1,60 @@
+# Ruby version
+
+        ruby 2.0.0p247 (2013-06-27 revision 41674) [x86_64-darwin12.4.0]
+
+# System dependencies
+
+        Gemfile
+
+# Configuration
+
+        config/
+
+# How to run the test suite
+
+        bundle exec rspec
+
+# Deployment instructions
+
+# Research
+
+* http://weblog.rubyonrails.org/2013/6/25/Rails-4-0-final/
+* http://stackoverflow.com/questions/8853748/capybara-and-rails-why-has-link-always-returns-false
+* http://caniuse.com/eventsource
+* https://gist.github.com/technoweenie/1031540
+* http://en.wikipedia.org/wiki/Server-sent_events
+* http://ngauthier.com/2013/02/rails-4-sse-notify-listen.html
+* https://developer.mozilla.org/en-US/docs/Web/API/EventTarget.addEventListener
+* http://www.ibm.com/developerworks/library/j-coffeescript/
+* http://stackoverflow.com/questions/7334862/rails-3-1-and-coffeescript-require-entire-directory
+* https://developer.mozilla.org/en-US/docs/Server-sent_events/Using_server-sent_events
+* http://www.beilabs.com/2013/05/02/redis-pub-sub-and-rails-4-streaming
+* http://stackoverflow.com/questions/4214731/coffeescript-global-variables
+* http://www.sitepoint.com/streaming-with-rails-4/
+* http://blog.phusion.nl/2012/08/03/why-rails-4-live-streaming-is-a-big-deal/
+* http://tenderlovemaking.com/2012/07/30/is-it-live.html
+* http://stackoverflow.com/questions/15749327/sinatra-streaming-with-puma
+* http://rubysnippets.com/2013/04/10/rails-4-live-streaming-versus-node-dot-js/
+* https://gist.github.com/maccman/2992949
+* http://stackoverflow.com/questions/16534365/detect-when-user-leaves-an-event-stream
+* http://dev.w3.org/html5/eventsource/#eventsource-push
+* http://www.html5rocks.com/en/tutorials/eventsource/basics/
+* https://gist.github.com/rkh/1476463
+* https://github.com/harigopal/eventmachine-redis-pubsub-demo
+* http://www.html5rocks.com/en/tutorials/webrtc/infrastructure/
+* http://en.wikipedia.org/wiki/Traversal_Using_Relays_around_NAT
+* http://stackoverflow.com/questions/7594390/why-a-stun-server-needs-two-different-public-ip-addresses
+* https://blog.palava.tv/
+* https://github.com/palavatv/palava-machine
+* http://stackoverflow.com/questions/14525464/rails-4-live-streaming
+* https://github.com/chuckremes/ffi-rzmq/issues/90
+* http://blog.arkency.com/2012/10/sending-async-data-from-rails-into-the-world/
+* http://www.programmingrelief.com/4031616/Redis-Cluster-Vs-Zeromq-In-Pubsub,-For-Horizontally-Scaled-Distributed-Systems
+* http://java.dzone.com/articles/distributed-systems-zeromq
+* http://nichol.as/zeromq-an-introduction
+* http://zguide.zeromq.org/php:chapter5#Pros-and-Cons-of-Pub-Sub
+* http://api.zeromq.org/3-2:zmq-setsockopt
+* http://ebastien.github.io/rds-talk-zeromq/#15
+* https://github.com/celluloid/celluloid-zmq/blob/master/lib/celluloid/zmq/sockets.rb
+* http://www.josetteorama.com/zeromq/
+* https://github.com/chuckremes/ffi-rzmq/tree/master/examples
