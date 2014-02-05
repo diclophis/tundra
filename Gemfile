@@ -3,6 +3,9 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '> 4.0.0'
 
+# A simple and lightweight mixin library for Sass.
+gem 'bourbon'
+
 # CoffeeScript adapter for the Rails asset pipeline. Also adds support to use CoffeeScript to respond to JavaScript requests (use .js.coffee views)
 gem 'coffee-rails'
 

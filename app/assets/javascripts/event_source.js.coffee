@@ -5,6 +5,7 @@ this.event_source = (resource) ->
     primary_source.close()
 
   primary_source.onmessage = (e) ->
-    msg = document.createElement("li")
-    msg.innerHTML = e.data
-    event_sources.appendChild(msg)
+    #msg = document.createElement("li")
+    #msg.innerHTML = e.data
+    #event_sources.appendChild(msg)
+    toaster_notification(e.data)

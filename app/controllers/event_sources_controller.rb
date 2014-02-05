@@ -16,7 +16,7 @@ class EventSourcesController < ApplicationController
 
     begin
       foo = Thread.new {
-        10.times {
+        1.times {
           response.stream.write("data: beep-boop\n\n")
           sleep 0.1
         }
