@@ -3,7 +3,7 @@ $redis = Redis.new
 heartbeat_thread = Thread.new do
   while true
     $redis.publish("primary", "thump")
-    sleep 1.seconds
+    sleep 5.seconds
   end
 end
 

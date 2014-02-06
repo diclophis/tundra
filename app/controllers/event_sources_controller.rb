@@ -7,40 +7,19 @@ class EventSourcesController < ApplicationController
   include TundraPlane
 
   def primary
-    #@client_thread = Thread.new do
-    #  until response.stream.closed?
-    #    puts "."
-    #    response.stream.write("data: naught\n\n")
-    #    sleep 1
-    #  end
-    #
-    #  @thread.kill
-    #end
-    #
-    #@sync_thread = Thread.new do
-    #  until @thread
-    #    sleep 1
-    #  end
-    #end
-
-    #begin
-      response.headers['Content-Type'] = 'text/event-stream'
-      response.stream.on_error do
-        closed
-      end
-      @redis, @thread = each_event do |event|
-        response.stream.write("data: #{event}\n\n")
-      end
-
-      #@client_thread.join
-      #@thread.join
+    response.headers['Content-Type'] = 'text/event-stream'
+    response.stream.on_error do
+      closed
+    end
+    @stream = each_event do |event|
+      response.stream.write("data: #{event}\n\n")
+    end
   ensure
     closed
-    #@thread.kill
   end
-  #end
 
   def closed
+    @stream.quit
     response.stream.close unless response.stream.closed?
     @closed = true
   end
