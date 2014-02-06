@@ -10,18 +10,30 @@ describe EventSourcesController do
 
   describe "#primary" do
     it "should fetch a message" do
-      s = ZmqSource.new
-      s.store_message("hello world")
+      puts "start spec"
+
+      ZmqSource.should be_a(Class)
+
       get :primary
-      sleep 1
 
-      s.store_message("hello world")
-      s.store_message("hello world")
-      s.store_message("hello world")
-      s.store_message("hello world")
-      s.store_message("hello world")
+      Thread.new do
+        #sleep 5
+        s = ZmqSource.new
+        sleep 1
+        2.times do
+          s.store_message("hello world")
+          #sleep 5
+          #Thread.pass
+          sleep 1
+        end
+      end
 
-      #sleep 10
+
+      Thread.list.each do |pt|
+        pt.join unless pt == Thread.current
+      end
+
+      assigns(:closed).should be_true
     end
   end
 end
