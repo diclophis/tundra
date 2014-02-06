@@ -39,7 +39,7 @@ class ZmqSource
       self.zmq_controller = self.zmq_context.socket(ZMQ::SUB)
       self.zmq_controller.connect(self.zmq_addr)
       self.zmq_controller.setsockopt(ZMQ::SUBSCRIBE, "")
-      raise unless ::ZMQ::Util.resultcode_ok? self.zmq_controller.setsockopt(ZMQ::RCVTIMEO, 5000)
+      raise unless ::ZMQ::Util.resultcode_ok? self.zmq_controller.setsockopt(ZMQ::RCVTIMEO, 1000)
       #raise unless ::ZMQ::Util.resultcode_ok? self.zmq_controller.setsockopt(ZMQ::RCVHWM, 1)
       #raise unless ::ZMQ::Util.resultcode_ok? self.zmq_controller.setsockopt(ZMQ::RCVBUF, 1)
     end

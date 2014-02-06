@@ -21,7 +21,7 @@
 
 #events li {
   @include transition-property(opacity, margin, transform);
-  @include transition-duration(0.95s);
+  @include transition-duration(1s);
   @include background-image(linear-gradient(to bottom, #f9f9f9, #e9e9e9));
 
   margin: 0 0 3em 0;

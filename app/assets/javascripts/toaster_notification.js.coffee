@@ -1,8 +1,11 @@
 total_visible = 5
 max_pending = total_visible - 2
 events = null
+debounce = null
 
 rotate = () ->
+  console.log("rotate")
+  debounce = null
   pending = 0
   eves = [].slice.call(events.querySelectorAll("li")).reverse()
   for eve in eves
@@ -21,7 +24,9 @@ this.toaster_notification = (message) ->
     eve.className = "recent"
     eve.innerHTML = message
     events.appendChild(eve)
-    setTimeout(rotate, 200)
+    if debounce
+      clearTimeout(debounce)
+    debounce = setTimeout(rotate, 200)
 
 this.toaster_notification_create = () ->
   events = document.getElementById("events")
