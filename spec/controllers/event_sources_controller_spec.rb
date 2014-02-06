@@ -16,13 +16,12 @@ describe EventSourcesController do
 
       Thread.new do
         s = ZmqSource.new
-
-        5.times do
-          s.store_message("hello world")
-          sleep 1 #TODO: wtf!!?
-          puts "wtf"
+        1024.times do #TODO: figure out synch send
+          puts s.store_message("hello world")
+          sleep 0.1
         end
         s.close
+        response.stream.close
       end
 
       Thread.list.each do |pt|

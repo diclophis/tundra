@@ -16,17 +16,25 @@ class EventSourcesController < ApplicationController
 
     response.headers['Content-Type'] = 'text/event-stream'
     response.stream.write("data: connected A\n\n")
+    response.stream.write("data: connected B\n\n")
 
     @source = ZmqSource.new
 
-    response.stream.write("data: connected B\n\n")
-
-    @source.obtain_message do |last_message|
-      @last_message = last_message
-      response.stream.write("data: #{@last_message}\n\n")
+    loop do
+      next_message = @source.obtain_message
+      if next_message
+        @last_message = next_message
+        #response.stream.write("data: #{@last_message}\n\n")
+      else
+        response.stream.write("data: timedout A\n\n")
+        if response.stream.closed?
+          break
+        else
+          puts "reloop"
+          redo
+        end
+      end
     end
-
-
   ensure
     @source.close if @source
     @source = nil
