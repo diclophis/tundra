@@ -1,10 +1,9 @@
-total_visible = 5
+total_visible = 1
 max_pending = total_visible - 2
 events = null
 debounce = null
 
 rotate = () ->
-  console.log("rotate")
   debounce = null
   pending = 0
   eves = [].slice.call(events.querySelectorAll("li")).reverse()

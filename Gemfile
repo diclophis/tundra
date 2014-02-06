@@ -24,8 +24,8 @@ gem 'puma'
 # New Relic RPM Ruby Agent
 gem 'newrelic_rpm'
 
-# FFI bindings for ZeroMQ so the library can be used under JRuby and other FFI-compliant ruby runtimes
-gem 'ffi-rzmq'
+# A Ruby client library for Redis
+gem 'redis'
 
 # New wave Internationalization support for Ruby.
 gem 'i18n'
