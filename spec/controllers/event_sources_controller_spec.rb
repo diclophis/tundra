@@ -19,7 +19,7 @@ describe EventSourcesController do
       Thread.new do
         #sleep 5
         s = ZmqSource.new
-        sleep 1
+        #sleep 1
         2.times do
           s.store_message("hello world")
           #sleep 5

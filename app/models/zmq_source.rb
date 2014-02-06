@@ -13,6 +13,7 @@ class ZmqSource
     self.id = rand.to_s
     self.zmq_addr = "tcp://127.0.0.1:5555"
     #self.zmq_addr = "ipc:///tmp/feeds/0"
+    #self.zmq_addr = "pgm://*:5555"
     #puts "context"
     puts self.zmq_context = ZMQ::Context.create #ZMQ::Context.new(16) #({:io_threads => 16, :max_sockets => 16})
     #puts
@@ -25,6 +26,9 @@ class ZmqSource
       unless self.zmq_sender
         # Socket to send messages to
         self.zmq_sender = self.zmq_context.socket(ZMQ::PUB)
+        raise unless ::ZMQ::Util.resultcode_ok? self.zmq_sender.setsockopt(ZMQ::SNDTIMEO, 30000)
+        raise unless ::ZMQ::Util.resultcode_ok? self.zmq_sender.setsockopt(ZMQ::SNDHWM, 1)
+
         #self.zmq_sender.bind("tcp://*:5558")
         self.zmq_sender.bind(self.zmq_addr)
       end
