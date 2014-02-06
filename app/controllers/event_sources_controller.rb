@@ -6,59 +6,33 @@ $DEBUG = true
 class EventSourcesController < ApplicationController
   include ActionController::Live
 
-  attr_accessor :source
-
   def index
   end
 
   def primary
-      @closed = false
-    #begin
+    @closed = false
+    @last_message = nil
+    @source = nil
 
-      puts "live update 111"
-      response.headers['Content-Type'] = 'text/event-stream'
-      response.stream.write("data: connected A\n\n")
+    response.headers['Content-Type'] = 'text/event-stream'
+    response.stream.write("data: connected A\n\n")
 
-      puts "WTF!!!"
+    @source = ZmqSource.new
 
-      #begin
-        self.source = ZmqSource.new
+    response.stream.write("data: connected B\n\n")
 
-        puts "live update 222"
+    @source.obtain_message do |last_message|
+      @last_message = last_message
+      response.stream.write("data: #{@last_message}\n\n")
+    end
 
-        response.stream.write("data: connected B\n\n")
 
-        puts "message--2"
+  ensure
+    @source.close if @source
+    @source = nil
 
-        puts message = source.obtain_message
-        puts
+    response.stream.close unless response.stream.closed?
 
-        #if message
-        #  puts "live out"
-        #  puts response.stream.write("data: #{message}\n\n")
-        #  puts
-        #end
-        #sleep 5
-      #rescue => e
-      #  puts "WEWEWEWEWEW"
-      #  puts e
-      #ensure
-      #  if source
-      #    puts "ensure linkage close"
-      #    puts source.close
-      #    puts
-      #  end
-      #end
-
-      Thread.pass
-
-      puts "outer ensure"
-      puts response.stream.close unless response.stream.closed?
-
-      @closed = true
-    #rescue => e
-    #  puts "WTF222"
-    #  puts e
-    #end
+    @closed = true
   end
 end
