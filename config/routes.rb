@@ -5,6 +5,7 @@ Tundra::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#index'
 
+  post 'store' => 'welcome#store'
   get 'primary' => 'event_sources#primary'
 
   # Example of regular route:

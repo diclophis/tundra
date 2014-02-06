@@ -7,6 +7,7 @@ describe EventSourcesController do
       #assigns(:sync_thread).join
       #response.stream.close
       #assigns(:thread).join
+      sleep 5
       assigns(:closed).should be_true
     end
   end

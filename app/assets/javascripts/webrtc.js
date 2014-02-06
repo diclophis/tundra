@@ -14547,12 +14547,12 @@ require=(function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof requir
 
         var assert = require('assert');
         var util = require('util');
-        var imap = require('imap');
+        //var imap = require('imap');
         var when = require('when');
         var RTCMultiConnection = require('./rtcmulticonnection');
         var timeout = require('when/timeout');
         var sequence = require('when/sequence');
-        var publicSecret = require('./secret');
+        //var publicSecret = require('./secret');
         var signalMailbox = 'BLOOP_SIGNAL';
 
         var sessionWang = "wtf123333";
@@ -14577,11 +14577,9 @@ require=(function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof requir
         var openedConnection = false;
         var joinedExisting = false;
 
-
         var sanitizeSessionWang = function(userEnteredValue) {
             return userEnteredValue.replace(/[^a-zA-Z0-9\-\_\.]/, '');
         };
-
 
         var resizeVideos = function() {
             switch (document.getElementsByTagName("video").length) {
@@ -14615,6 +14613,7 @@ require=(function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof requir
 
         var thingThatMakesAnAppendEmailFun = function(twerpAddress, kwerkAddress, appendedFun) {
             return function(thingThatRespondsToAppend, subject, data, priority) {
+                /*
                 var out = "";
                 out += "From: " + twerpAddress + "\r\n";
                 out += "To: " + kwerkAddress + "\r\n";
@@ -14622,6 +14621,14 @@ require=(function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof requir
                 out += "Date: " + new Date() + "\r\n";
                 out += "Priority: " + priority + "\r\n";
                 out += "\r\n" + data + "\r\n";
+                */
+                var out = {
+                  From: twerpAddress,
+                  To: kwerkAddress,
+                  Subject: subject,
+                  Date: new Date(),
+                  Priority: priority
+                }
                 thingThatRespondsToAppend.append(out, {
                     mailbox: 'WANGCHUNG'
                 }, appendedFun);
@@ -14857,7 +14864,21 @@ require=(function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof requir
 
             var myAddress = 'fart' + sender;
             var toAddress = 'fart';
-            var gmail = {};
+
+            var gmail = {
+              append: function(msg) {
+                console.log("HERE!!", msg);
+                debugger;
+                var form = document.getElementById("store-form");
+                document.getElementById("message").value = JSON.stringify(msg);
+                form.onsubmit = function(e) {
+                  e.preventDefault();
+                  return false;
+                }
+
+                form.submit();
+              }
+            };
 
             var openOrConnectToSession = thingThatMakesAnOnOpenOrConnectFun(myAddress, gmail);
             var wha = null;
@@ -14880,7 +14901,7 @@ require=(function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof requir
                 //    if (newMessages && newMessages.length) {
                 //        for (var i=0; i<newMessages.length; i++) {
                             var newMessage = JSON.parse(e.data); //newMessages[i];
-                            console.log("got", newMessage.subject, newMessage.priority, myUserId);
+                            console.log("got", newMessage, newMessage.subject, newMessage.priority, myUserId);
                             if (outstarted[newMessage.subject]) {
                                 if (newMessage.from != myAddress) {
                                     var messageAsJson = newMessage.body;

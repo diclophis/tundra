@@ -9,5 +9,13 @@ describe WelcomeController do
       get :index, :message => "foo"
       response.should render_template("index")
     end
+
+    it "should send message" do
+      post :store
+      response.should be_success
+
+      post :store, :message => "fo"
+      response.should be_success
+    end
   end
 end

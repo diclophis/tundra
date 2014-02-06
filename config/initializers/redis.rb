@@ -1,9 +1,9 @@
-$redis = Redis.new
+$redis = Redic.new
 
 heartbeat_thread = Thread.new do
   while true
-    $redis.publish("primary", "thump")
-    sleep 5.seconds
+    $redis.call("PUBLISH", "primary", '{"heartbeart":"thump"}')
+    sleep 1.seconds
   end
 end
 

@@ -11,6 +11,7 @@ class EventSourcesController < ApplicationController
     response.stream.on_error do
       closed
     end
+    puts "wtf222"
     @stream = each_event do |event|
       response.stream.write("data: #{event}\n\n")
     end
@@ -19,7 +20,7 @@ class EventSourcesController < ApplicationController
   end
 
   def closed
-    @stream.quit
+    #@stream.quit
     response.stream.close unless response.stream.closed?
     @closed = true
   end
