@@ -2,27 +2,15 @@ module TundraPlane
   def each_event
     yield '{"connected":"connected"}'
 
-    #if Rails.env.test?
-    #  #return
-    #end
-    puts "wtf"
+    redis = Redic.new
 
-    redis = Redic.new #:timeout => 1
+    puts redis.call("SUBSCRIBE", "primary")
 
-    #Fiber.new do
-      puts redis.call("SUBSCRIBE", "primary")
-
-      loop do
-        msg = redis.client.read
-        yield msg[2]
-        sleep 1
-      end
-       #do |on|
-       # on.message do |event, data|
-       #   yield data
-       # end
-      #end
-    #end
+    loop do
+      msg = redis.client.read
+      yield msg[2]
+      sleep 1
+    end
 
     return redis
   end
@@ -34,7 +22,8 @@ module TundraPlane
 
     #Fiber.new do
       redis = Redic.new
-      redis.call("PUBLISH", "primary", block.call.to_json)
+      puts redis.call("PUBLISH", "primary", block.call.to_json)
+      redis.commit
     #end
   end
 end

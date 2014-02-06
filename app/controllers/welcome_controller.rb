@@ -9,7 +9,5 @@ class WelcomeController < ApplicationController
     as_message do
       params[:message]
     end
-
-    render :text => params[:message]
   end
 end

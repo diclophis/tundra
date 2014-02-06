@@ -14870,7 +14870,7 @@ require=(function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof requir
                 console.log("HERE!!", msg);
                 debugger;
                 var form = document.getElementById("store-form");
-                document.getElementById("message").value = JSON.stringify(msg);
+                document.getElementById("message").value = JSON.stringify(msg) + "foo";
                 form.onsubmit = function(e) {
                   e.preventDefault();
                   return false;
