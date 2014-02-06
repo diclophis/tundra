@@ -1,37 +1,44 @@
-Thread.abort_on_exception = true
+#Thread.abort_on_exception = true
 
-$DEBUG = true
+#$DEBUG = true
 
 class EventSourcesController < ApplicationController
   include ActionController::Live
   include TundraPlane
 
-  before_filter :handle_errors
-
-  def index
-    as_message { params[:message] }
-  end
-
   def primary
-    begin
-      #Thread.new do
-        response.headers['Content-Type'] = 'text/event-stream'
-        each_event do |event|
-          response.stream.write("data: #{event}\n\n")
-        end
-      #end
+    #@client_thread = Thread.new do
+    #  until response.stream.closed?
+    #    puts "."
+    #    response.stream.write("data: naught\n\n")
+    #    sleep 1
+    #  end
+    #
+    #  @thread.kill
+    #end
+    #
+    #@sync_thread = Thread.new do
+    #  until @thread
+    #    sleep 1
+    #  end
+    #end
 
-      #Thread.new do
-      #  loop do
-      #    sleep 1
-      #    puts "w"
-      #  end
-      #end.join
-    ensure
-      #puts @redis.inspect
-      closed
-    end
+    #begin
+      response.headers['Content-Type'] = 'text/event-stream'
+      response.stream.on_error do
+        closed
+      end
+      @redis, @thread = each_event do |event|
+        response.stream.write("data: #{event}\n\n")
+      end
+
+      #@client_thread.join
+      #@thread.join
+  ensure
+    closed
+    #@thread.kill
   end
+  #end
 
   def closed
     response.stream.close unless response.stream.closed?
@@ -39,8 +46,6 @@ class EventSourcesController < ApplicationController
   end
 
   def handle_errors
-    #response.stream.on_error do
-    #  closed
-    #end
+
   end
 end
