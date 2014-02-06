@@ -12,17 +12,36 @@ describe EventSourcesController do
     it "should fetch a message" do
       ZmqSource.should be_a(Class)
 
+s = ZmqSource.new
+puts s.store_message("hello world")
+s.close
+s = nil
+
       get :primary
 
+=begin
       Thread.new do
+        12.times do #TODO: figure out synch send
         s = ZmqSource.new
-        1024.times do #TODO: figure out synch send
+
+puts response.status
+
+#puts response.inspect
+#puts response.headers.inspect
+
           puts s.store_message("hello world")
-          sleep 0.1
-        end
+          sleep 1
         s.close
+        s = nil
+        end
         response.stream.close
       end
+=end
+
+
+puts "wtf!!!"
+
+response.stream.close
 
       Thread.list.each do |pt|
         pt.join unless pt == Thread.current

@@ -10,7 +10,9 @@ class ZmqSource
 
   def initialize
     self.id = rand.to_s
-    self.zmq_addr = "tcp://127.0.0.1:5555"
+    #self.zmq_addr = "tcp://127.0.0.1:5555"
+    #self.zmq_addr = "tcp://*:5555"
+    self.zmq_addr = "pgm://239.192.1.1:5555"
   end
 
   def store_message(msg)
@@ -25,7 +27,11 @@ class ZmqSource
       self.zmq_sender.bind(self.zmq_addr)
     end
 
-    return ::ZMQ::Util.resultcode_ok? self.zmq_sender.send_string(msg)
+    until ::ZMQ::Util.resultcode_ok? self.zmq_sender.send_string(msg)
+      puts "???" 
+      puts ZMQ::Util.error_string
+      puts
+    end
   end
 
   def obtain_message
@@ -41,7 +47,7 @@ class ZmqSource
       #raise unless ::ZMQ::Util.resultcode_ok? self.zmq_controller.setsockopt(ZMQ::RCVBUF, 1)
     end
 
-    if ::ZMQ::Util.resultcode_ok? self.zmq_controller.recv_string(msg = "")
+    if ::ZMQ::Util.resultcode_ok? self.zmq_controller.recv_string(msg = "", ZMQ::DONTWAIT)
       puts "ZMQ::RECV -- #{msg}" if $DEBUG
       msg
     else
@@ -51,6 +57,7 @@ class ZmqSource
   end
 
   def close
+return
     if self.zmq_sender
       self.zmq_sender.close
       self.zmq_sender = nil

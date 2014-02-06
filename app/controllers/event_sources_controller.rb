@@ -18,9 +18,13 @@ class EventSourcesController < ApplicationController
     response.stream.write("data: connected A\n\n")
     response.stream.write("data: connected B\n\n")
 
-    @source = ZmqSource.new
 
     loop do
+puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+      @source.close if @source
+      @source = nil
+
+      @source = ZmqSource.new
       next_message = @source.obtain_message
       if next_message
         @last_message = next_message
