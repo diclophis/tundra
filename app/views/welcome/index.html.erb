@@ -3,6 +3,6 @@
 <ul id="about"></ul>
 
 <%= form_tag "store", :id => "store-form", :method => :post, :target => "debug" do %>
-  <input id="message" value="temp"></input>
+  <input id="message" name="message" value=""></input>
   <iframe id="debug"></iframe>
 <% end %>

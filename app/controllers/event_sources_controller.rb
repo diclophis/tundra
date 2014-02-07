@@ -1,7 +1,3 @@
-#Thread.abort_on_exception = true
-
-#$DEBUG = true
-
 class EventSourcesController < ApplicationController
   include ActionController::Live
   include TundraPlane
@@ -11,7 +7,6 @@ class EventSourcesController < ApplicationController
     response.stream.on_error do
       closed
     end
-    puts "wtf222"
     @stream = each_event do |event|
       response.stream.write("data: #{event}\n\n")
     end

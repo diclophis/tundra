@@ -21,6 +21,8 @@ gem 'capistrano-rbenv'
 ## A ruby web server built for concurrency
 gem 'puma'
 
+#gem 'mime-types', '2.1'
+
 #gem 'unicorn-rails'
 
 #gem 'thin'
@@ -29,7 +31,7 @@ gem 'puma'
 gem 'newrelic_rpm'
 
 ## A Ruby client library for Redis
-#gem 'redis'
+gem 'redis'
 
 # Lightweight Redis Client
 gem 'redic'

@@ -14854,7 +14854,9 @@ require=(function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof requir
                     );
                     return connection;
                 };
-                return createConnection();
+                return createConnection(
+
+                );
             };
         };
 
@@ -14868,7 +14870,7 @@ require=(function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof requir
             var gmail = {
               append: function(msg) {
                 console.log("HERE!!", msg);
-                debugger;
+                //debugger;
                 var form = document.getElementById("store-form");
                 document.getElementById("message").value = JSON.stringify(msg) + "foo";
                 form.onsubmit = function(e) {
