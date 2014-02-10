@@ -14,19 +14,19 @@ class EventSourcesController < ApplicationController
     @uid = (rand * 100000).to_i.to_s
 
     response.headers['Content-Type'] = 'text/event-stream'
-    sse = SSE.new(response.stream) #, retry: 300, event: "event-name")
+    sse = SSE.new(response.stream)
 
     @subscriber = Thread.new do
       begin
         @heartbeat = Thread.new do
-          until (bar = @redis2.publish(@uid, "heartbeat")) == 1
+          until (bar = @redis2.publish(@uid, "{}")) == 1
             Thread.pass
             sleep 1
           end
 
-          while (bar = @redis2.publish(@uid, "heartbeat")) == 1
+          while (bar = @redis2.publish(@uid, "{}")) == 1
             Thread.pass
-            sleep 1
+            sleep 5
           end
 
           @heartbeat_finished = true
@@ -41,7 +41,7 @@ class EventSourcesController < ApplicationController
                 @heartbeat_started = true
                 @sse_mutex.lock unless @sse_mutex.locked?
               end
-              sse.write({ name: data})
+              sse.write(data)
               sleep 1
             end
           end

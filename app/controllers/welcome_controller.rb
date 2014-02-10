@@ -1,13 +1,13 @@
 class WelcomeController < ApplicationController
-  include TundraPlane
-
   def index
     #render :index
   end
 
   def store
-    as_message do
-      params[:message]
-    end
+    @redis = Redis.new
+    @redis.publish("broadcast", params[:message])
+    @redis.quit
+
+    render :layout => false
   end
 end

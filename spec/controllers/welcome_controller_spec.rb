@@ -14,7 +14,7 @@ describe WelcomeController do
       post :store
       response.should be_success
 
-      post :store, :message => "fo"
+      post :store, :message => "bar"
       response.should be_success
     end
   end

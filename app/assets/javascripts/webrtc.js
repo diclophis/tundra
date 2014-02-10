@@ -1,6 +1,8 @@
-require=(function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof require=="function"&&require;if(!s&&o)return o(n,!0);if(r)return r(n,!0);throw new Error("Cannot find module '"+n+"'")}var u=t[n]={exports:{}};e[n][0].call(u.exports,function(t){var r=e[n][1][t];return i(r?r:t)},u,u.exports)}return t[n].exports}var r=typeof require=="function"&&require;for(var s=0;s<n.length;s++)i(n[s]);return i})({"util":[function(require,module,exports){
+require=(function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof require=="function"&&require;if(!s&&o)return o(n,!0);if(r)return r(n,!0);throw new Error("Cannot find module '"+n+"'")}var u=t[n]={exports:{}};e[n][0].call(u.exports,function(t){var r=e[n][1][t];return i(r?r:t)},u,u.exports)}return t[n].exports}var r=typeof require=="function"&&require;for(var s=0;s<n.length;s++)i(n[s]);return i})
+({"util":[function(require,module,exports){
     module.exports=require('DDZ1I6');
-},{}],"DDZ1I6":[function(require,module,exports){
+},{}],
+    "DDZ1I6":[function(require,module,exports){
     var events = require('events');
 
     exports.isArray = isArray;
@@ -353,9 +355,11 @@ require=(function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof requir
         return str;
     };
 
-},{"events":1}],"assert":[function(require,module,exports){
+},{"events":1}],
+    "assert":[function(require,module,exports){
     module.exports=require('vYBjZZ');
-},{}],"vYBjZZ":[function(require,module,exports){
+},{}],
+    "vYBjZZ":[function(require,module,exports){
     (function(){// UTILITY
         var util = require('util');
         var Buffer = require("buffer").Buffer;
@@ -671,8 +675,8 @@ require=(function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof requir
 
         assert.ifError = function(err) { if (err) {throw err;}};
 
-    })()
-},{"util":"DDZ1I6","buffer":2}],"net":[function(require,module,exports){
+    })()},{"util":"DDZ1I6","buffer":2}],
+    "net":[function(require,module,exports){
     module.exports=require('6y6stt');
 },{}],"6y6stt":[function(require,module,exports){
     (function(){/*
@@ -1292,7 +1296,8 @@ require=(function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof requir
         };
 
     })(require("__browserify_process"))
-},{"__browserify_process":4}],3:[function(require,module,exports){
+},{"__browserify_process":4}],
+3:[function(require,module,exports){
     var events = require('events');
     var util = require('util');
 
@@ -1413,10 +1418,12 @@ require=(function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof requir
         return dest;
     };
 
-},{"events":1,"util":"DDZ1I6"}],5:[function(require,module,exports){
+},{"events":1,"util":"DDZ1I6"}],
+5:[function(require,module,exports){
 // todo
 
-},{}],6:[function(require,module,exports){
+},{}],
+6:[function(require,module,exports){
     (function(){/*!
      * XRegExp All 3.0.0-pre
      * <http://xregexp.com/>
@@ -5373,7 +5380,8 @@ require=(function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof requir
 
 
     })()
-},{}],7:[function(require,module,exports){
+},{}],
+7:[function(require,module,exports){
     exports.MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep',
         'Oct', 'Nov', 'Dec'];
 
@@ -5617,7 +5625,8 @@ require=(function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof requir
 
     exports.line = line;
 
-},{}],8:[function(require,module,exports){
+},{}],
+8:[function(require,module,exports){
     (function(){/*
      2013, @muazkh - github.com/muaz-khan
      MIT License - https://webrtc-experiment.appspot.com/licence/
@@ -7071,7 +7080,8 @@ require=(function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof requir
 //rtcmulticonnection = module.exports.rtcmulticonnection;
 
     })()
-},{}],9:[function(require,module,exports){
+},{}],
+9:[function(require,module,exports){
 // passwords and what not
 
     var secret = module.exports;
@@ -7079,7 +7089,8 @@ require=(function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof requir
     secret.user = "jon.j.mahone@gmail.com";
     secret.pass = "qwerty1234567";
 
-},{}],10:[function(require,module,exports){
+},{}],
+10:[function(require,module,exports){
     exports.readIEEE754 = function(buffer, offset, isBE, mLen, nBytes) {
         var e, m,
             eLen = nBytes * 8 - mLen - 1,
@@ -7165,7 +7176,8 @@ require=(function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof requir
         buffer[offset + i - d] |= s * 128;
     };
 
-},{}],2:[function(require,module,exports){
+},{}],
+2:[function(require,module,exports){
     (function(){function SlowBuffer (size) {
         this.length = size;
     };
@@ -8485,7 +8497,8 @@ require=(function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof requir
         SlowBuffer.prototype.writeDoubleBE = Buffer.prototype.writeDoubleBE;
 
     })()
-},{"assert":"vYBjZZ","./buffer_ieee754":10,"base64-js":11}],12:[function(require,module,exports){
+},{"assert":"vYBjZZ","./buffer_ieee754":10,"base64-js":11}],
+12:[function(require,module,exports){
     var utils = require('./imap.utilities');
 
     var RE_CRLF = /\r\n/g,
@@ -8835,9 +8848,11 @@ require=(function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof requir
         return (isTop ? result : start);
     };
 
-},{"./imap.utilities":7}],"imap":[function(require,module,exports){
+},{"./imap.utilities":7}],
+"imap":[function(require,module,exports){
     module.exports=require('/esTPA');
-},{}],13:[function(require,module,exports){
+},{}],
+13:[function(require,module,exports){
     require=(function(e,t,n,r){function i(r){if(!n[r]){if(!t[r]){if(e)return e(r);throw new Error("Cannot find module '"+r+"'")}var s=n[r]={exports:{}};t[r][0](function(e){var n=t[r][1][e];return i(n?n:e)},s,s.exports)}return n[r].exports}for(var s=0;s<r.length;s++)i(r[s]);return i})(typeof require!=="undefined"&&require,{1:[function(require,module,exports){
         exports.readIEEE754 = function(buffer, offset, isBE, mLen, nBytes) {
             var e, m,
@@ -12702,7 +12717,8 @@ require=(function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof requir
     },{}]},{},[])
     ;;module.exports=require("buffer-browserify")
 
-},{}],"/esTPA":[function(require,module,exports){
+},{}],
+"/esTPA":[function(require,module,exports){
     (function(process,Buffer){var assert = require('assert'),
         tls = require('tls'),
         isDate = require('util').isDate,
@@ -14353,7 +14369,8 @@ require=(function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof requir
         inherits(ImapFetch, EventEmitter);
 
     })(require("__browserify_process"),require("__browserify_buffer").Buffer)
-},{"assert":"vYBjZZ","tls":5,"util":"DDZ1I6","net":"6y6stt","events":1,"./xregexp":6,"./imap.parsers":12,"./imap.utilities":7,"utf7":14,"__browserify_process":4,"__browserify_buffer":13}],11:[function(require,module,exports){
+},{"assert":"vYBjZZ","tls":5,"util":"DDZ1I6","net":"6y6stt","events":1,"./xregexp":6,"./imap.parsers":12,"./imap.utilities":7,"utf7":14,"__browserify_process":4,"__browserify_buffer":13}],
+11:[function(require,module,exports){
     (function (exports) {
         'use strict';
 
@@ -14439,7 +14456,8 @@ require=(function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof requir
         module.exports.fromByteArray = uint8ToBase64;
     }());
 
-},{}],14:[function(require,module,exports){
+},{}],
+14:[function(require,module,exports){
     (function(){var Buffer = require('buffer').Buffer;
 
         function encode(str) {
@@ -14540,7 +14558,8 @@ require=(function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof requir
         };
 
     })()
-},{"buffer":2}],15:[function(require,module,exports){
+},{"buffer":2}],
+15:[function(require,module,exports){
     (function(){//
 //"use strict";
         /*jslint browser: true, node: true, regexp: true, sloppy: true, indent: 2 */
@@ -14623,12 +14642,13 @@ require=(function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof requir
                 out += "\r\n" + data + "\r\n";
                 */
                 var out = {
-                  From: twerpAddress,
-                  To: kwerkAddress,
-                  Subject: subject,
-                  Date: new Date(),
-                  Priority: priority
+                  from: twerpAddress,
+                  to: kwerkAddress,
+                  subject: subject,
+                  date: new Date(),
+                  priority: priority
                 }
+                debugger;
                 thingThatRespondsToAppend.append(out, {
                     mailbox: 'WANGCHUNG'
                 }, appendedFun);
@@ -14636,32 +14656,32 @@ require=(function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof requir
         };
 
 
-        var thingThatMakesAnOnFetchFun = function (onFetchedEmailFun) {
-            return function(fetch) {
-                fetch.on("message", function(msg) {
-                    var body = "";
-                    var headers = null;
-                    msg.on('data', function(chunk) {
-                        body += chunk;
-                    });
-                    msg.on('headers', function(hdrs) {
-                        headers = hdrs;
-                    });
-                    msg.on('end', function() {
-                        lastSeq = this.seqno;
-                        var email = {
-                            uid: this.uid,
-                            headers: headers,
-                            from: headers.from[0],
-                            subject: headers.subject[0],
-                            body: body,
-                            priority: parseInt(headers.priority[0])
-                        };
-                        onFetchedEmailFun(email);
-                    });
-                });
-            };
-        };
+//        var thingThatMakesAnOnFetchFun = function (onFetchedEmailFun) {
+//            return function(fetch) {
+//                fetch.on("message", function(msg) {
+//                    var body = "";
+//                    var headers = null;
+//                    msg.on('data', function(chunk) {
+//                        body += chunk;
+//                    });
+//                    msg.on('headers', function(hdrs) {
+//                        headers = hdrs;
+//                    });
+//                    msg.on('end', function() {
+//                        lastSeq = this.seqno;
+//                        var email = {
+//                            uid: this.uid,
+//                            headers: headers,
+//                            from: headers.from[0],
+//                            subject: headers.subject[0],
+//                            body: body,
+//                            priority: parseInt(headers.priority[0])
+//                        };
+//                        onFetchedEmailFun(email);
+//                    });
+//                });
+//            };
+//        };
 
 
 //        var thingThatMakesAnOnSearchResultsFun = function(thingThatRespondsToFetch, onFetchedAllEmailsFun) {
@@ -14872,7 +14892,7 @@ require=(function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof requir
                 console.log("HERE!!", msg);
                 //debugger;
                 var form = document.getElementById("store-form");
-                document.getElementById("message").value = JSON.stringify(msg) + "foo";
+                document.getElementById("message").value = JSON.stringify(msg);
                 form.onsubmit = function(e) {
                   e.preventDefault();
                   return false;
@@ -14897,14 +14917,17 @@ require=(function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof requir
             var primary_source = new EventSource("primary");
 
             primary_source.onmessage = function(e) {
-                window.toaster_notification(e.data)
 
                 //var doneFetchingNewMessages = function(newMessages) {
                 //    if (newMessages && newMessages.length) {
                 //        for (var i=0; i<newMessages.length; i++) {
+                console.log(e.data);
                             var newMessage = JSON.parse(e.data); //newMessages[i];
                             console.log("got", newMessage, newMessage.subject, newMessage.priority, myUserId);
+                window.toaster_notification(e.data)
+
                             if (outstarted[newMessage.subject]) {
+
                                 if (newMessage.from != myAddress) {
                                     var messageAsJson = newMessage.body;
                                     var messageAsObject = JSON.parse(messageAsJson);
@@ -14965,7 +14988,7 @@ require=(function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof requir
 
 
         var showIndex = function(msg) {
-            document.getElementById("about").className = "enabled";
+            //document.getElementById("about").className = "enabled";
 
             //document.getElementById("public-rooms").onsubmit = function(ev) {
             //    ev.preventDefault();
@@ -14997,7 +15020,8 @@ require=(function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof requir
         }
 
     })()
-},{"assert":"vYBjZZ","util":"DDZ1I6","imap":"/esTPA","./rtcmulticonnection":8,"./secret":9,"when/timeout":16,"when/sequence":17,"when":18}],16:[function(require,module,exports){
+},{"assert":"vYBjZZ","util":"DDZ1I6","imap":"/esTPA","./rtcmulticonnection":8,"./secret":9,"when/timeout":16,"when/sequence":17,"when":18}],
+16:[function(require,module,exports){
     (function(){/** @license MIT License (c) copyright 2011-2013 original author or authors */
 
         /**
@@ -15073,7 +15097,8 @@ require=(function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof requir
 
 
     })()
-},{"./when":18}],17:[function(require,module,exports){
+},{"./when":18}],
+17:[function(require,module,exports){
     /** @license MIT License (c) copyright 2011-2013 original author or authors */
 
     /**
@@ -15125,7 +15150,8 @@ require=(function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof requir
 
 
 
-},{"./when":18}],18:[function(require,module,exports){
+},{"./when":18}],
+18:[function(require,module,exports){
     (function(process){/** @license MIT License (c) copyright 2011-2013 original author or authors */
 
         /**
@@ -15950,5 +15976,4 @@ require=(function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof requir
             );
 
     })(require("__browserify_process"))
-},{"__browserify_process":4}]},{},[15])
-;
+},{"__browserify_process":4}]},{},[15]);
