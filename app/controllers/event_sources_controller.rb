@@ -5,14 +5,13 @@ class EventSourcesController < ApplicationController
 
   def primary
     @subscribed = false
-    @closed = false
+    @closed_response_stream = false
     @heartbeat_started = false
     @heartbeat_finished = false
     @sse_mutex = Mutex.new
     @redis = Redis.new
     @redis2 = Redis.new
-
-    @uid = (rand * 10000).to_i.to_s
+    @uid = (rand * 100000).to_i.to_s
 
     response.headers['Content-Type'] = 'text/event-stream'
     sse = SSE.new(response.stream) #, retry: 300, event: "event-name")
@@ -22,18 +21,14 @@ class EventSourcesController < ApplicationController
         @heartbeat = Thread.new do
           until (bar = @redis2.publish(@uid, "heartbeat")) == 1
             Thread.pass
-            sleep 1
           end
 
           while (bar = @redis2.publish(@uid, "heartbeat")) == 1
             Thread.pass
-            sleep 1
           end
 
           @heartbeat_finished = true
         end
-
-        @subscribed = true
 
         @redis.subscribe(['broadcast', @uid]) do |on|
           on.message do |event, data|
@@ -48,6 +43,7 @@ class EventSourcesController < ApplicationController
               sleep 1
             end
           end
+          @subscribed = true
         end
 
         closed
@@ -60,7 +56,6 @@ class EventSourcesController < ApplicationController
     Thread.new do
       until @sse_mutex.locked?
         Thread.pass
-        sleep 1
       end
     end.join
 
@@ -72,6 +67,6 @@ class EventSourcesController < ApplicationController
     @redis.quit if @redis && @redis.connected?
     @redis2.quit if @redis2 && @redis2.connected?
     response.stream.close unless response.stream.closed?
-    @closed = true
+    @closed_response_stream = true
   end
 end

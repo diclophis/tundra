@@ -6,19 +6,16 @@ describe EventSourcesController do
       get :primary
 
       response.stream.close
-      #assigns(:waiter).join
 
-      until assigns(:closed) #assigns(:ensure_mutex).locked?
+      until assigns(:closed_response_stream)
         Thread.pass
-        sleep 1
       end
 
-      #assigns(:ensure_mutex).should_not be_locked
       assigns(:subscribed).should be_true
       assigns(:left_controller).should be_true
       assigns(:heartbeat_finished).should be_true
       assigns(:heartbeat_started).should be_true
-      assigns(:closed).should be_true
+      assigns(:closed_response_stream).should be_true
     end
   end
 end
