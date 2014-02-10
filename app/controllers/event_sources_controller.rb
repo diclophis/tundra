@@ -6,17 +6,9 @@ class EventSourcesController < ApplicationController
   def primary
     @subscribed = false
     @closed = false
+    @heartbeat_started = false
+    @heartbeat_finished = false
     @sse_mutex = Mutex.new
-    @ensure_mutex = Mutex.new
-    @ensure_mutex.lock
-
-    @waiter = Thread.new do
-      while @ensure_mutex.locked?
-        puts "w"
-        sleep 1
-      end
-    end
-
     @redis = Redis.new
     @redis2 = Redis.new
 
@@ -38,7 +30,7 @@ class EventSourcesController < ApplicationController
             sleep 1
           end
 
-          puts "w???? #{bar} #{bar.class}"
+          @heartbeat_finished = true
         end
 
         @subscribed = true
@@ -46,11 +38,10 @@ class EventSourcesController < ApplicationController
         @redis.subscribe(['broadcast', @uid]) do |on|
           on.message do |event, data|
             if response.stream.closed?
-              puts "bar"
               @redis.unsubscribe(["broadcast", @uid])
             else
               if event == @uid
-                puts "foor"
+                @heartbeat_started = true
                 @sse_mutex.lock unless @sse_mutex.locked?
               end
               sse.write({ name: data})
@@ -73,18 +64,14 @@ class EventSourcesController < ApplicationController
       end
     end.join
 
-    puts @ensure_mutex.locked?
     @left_controller = true
   end
 
   def closed
     @heartbeat.join
-
     @redis.quit if @redis && @redis.connected?
     @redis2.quit if @redis2 && @redis2.connected?
     response.stream.close unless response.stream.closed?
     @closed = true
-    @ensure_mutex.unlock if @ensure_mutex.locked?
-    puts "wtf"
   end
 end
