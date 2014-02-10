@@ -48,7 +48,7 @@ class EventSourcesController < ApplicationController
 
         closed
       rescue IOError => e
-        puts e
+        puts e #TODO spec this
         closed
       end
     end
