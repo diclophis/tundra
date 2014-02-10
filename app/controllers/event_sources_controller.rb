@@ -21,10 +21,12 @@ class EventSourcesController < ApplicationController
         @heartbeat = Thread.new do
           until (bar = @redis2.publish(@uid, "heartbeat")) == 1
             Thread.pass
+            sleep 1
           end
 
           while (bar = @redis2.publish(@uid, "heartbeat")) == 1
             Thread.pass
+            sleep 1
           end
 
           @heartbeat_finished = true

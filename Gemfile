@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-
 # A simple and lightweight mixin library for Sass.
 gem 'bourbon'
 
@@ -19,23 +18,14 @@ gem 'capistrano'
 # a capistrano recipe to manage rubies with rbenv.
 gem 'capistrano-rbenv'
 
-## A ruby web server built for concurrency
+# A ruby web server built for concurrency
 gem 'puma'
-
-#gem 'mime-types', '2.1'
-
-#gem 'unicorn-rails'
-
-#gem 'thin'
 
 # New Relic RPM Ruby Agent
 gem 'newrelic_rpm'
 
 ## A Ruby client library for Redis
 gem 'redis'
-
-# Lightweight Redis Client
-#gem 'redic'
 
 # New wave Internationalization support for Ruby.
 gem 'i18n'
