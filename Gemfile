@@ -44,4 +44,7 @@ group :development, :test do
 
   # rspec-rails is a testing framework for Rails 3.x and 4.x.
   gem "rspec-rails"
+
+  # Guard::RSpec automatically run your specs (much like autotest)
+  gem 'guard-rspec', :require => false
 end
