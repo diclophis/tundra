@@ -1,6 +1,4 @@
 window.addEventListener("load", function() {
-    console.log("WTF!!!");
-
     var channels = {};
     var currentUserUUID = Math.round(Math.random() * 60535) + 5000;
     var eventSource = new EventSource("primary");
