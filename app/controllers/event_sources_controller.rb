@@ -21,7 +21,7 @@ class EventSourcesController < ApplicationController
         @heartbeat = Thread.new do
           until (bar = @redis2.publish(@uid, "{}")) == 1
             Thread.pass
-            sleep 1
+            sleep 0.1
           end
 
           while (bar = @redis2.publish(@uid, "{}")) == 1
@@ -42,7 +42,6 @@ class EventSourcesController < ApplicationController
                 @sse_mutex.lock unless @sse_mutex.locked?
               end
               sse.write(data)
-              sleep 1
             end
           end
           @subscribed = true

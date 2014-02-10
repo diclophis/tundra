@@ -1,3 +1,4 @@
+#= require 'rtcmulticonnection'
 #= require_tree .
 
 document.addEventListener "DOMContentLoaded", ->

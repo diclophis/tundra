@@ -5,7 +5,7 @@ class WelcomeController < ApplicationController
 
   def store
     @redis = Redis.new
-    @redis.publish("broadcast", params[:message])
+    @redis.publish("broadcast", params[:welcome].to_json)
     @redis.quit
 
     render :layout => false
