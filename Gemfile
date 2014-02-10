@@ -1,7 +1,8 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '> 4.0.0'
+gem 'rails', :git => 'git://github.com/rails/rails.git'
+
 
 # A simple and lightweight mixin library for Sass.
 gem 'bourbon'
@@ -34,7 +35,7 @@ gem 'newrelic_rpm'
 gem 'redis'
 
 # Lightweight Redis Client
-gem 'redic'
+#gem 'redic'
 
 # New wave Internationalization support for Ruby.
 gem 'i18n'
