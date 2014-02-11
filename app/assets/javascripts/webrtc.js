@@ -1,5 +1,6 @@
 var webrtc_create = function() {
 
+  var videos = document.getElementById("videos");
   var channels = {};
   var currentUserUUID = Math.round(Math.random() * 60535) + 5000;
   var eventSource = null;
@@ -56,11 +57,26 @@ var webrtc_create = function() {
     connection.join(session);
   };
 
+  connection.onstream = function(e) {
+    var reflection = document.getElementById("first-video").cloneNode(true);
+    reflection.id = null;
+    if (e && e.mediaElement) {
+      e.mediaElement.removeAttribute("controls");
+      reflection.getElementsByClassName("video-container")[0].appendChild(e.mediaElement)
+    }
+    videos.appendChild(reflection);
+    videos.className = "videos-" + (videos.getElementsByClassName("video-container").length - 1);
+  };
+
   document.getElementById("join-room").onclick = function() {
     connection.connect("CHEESE");
   };
 
   document.getElementById("create-room").onclick = function() {
     connection.open("CHEESE");
+  };
+
+  document.getElementById("fake-room").onclick = function() {
+    connection.onstream();
   };
 };
