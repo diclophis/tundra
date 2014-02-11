@@ -1,22 +1,12 @@
-window.addEventListener("load", function() {
+document.addEventListener("DOMContentLoaded", function() {
+
+//console.log(navigator.userAgent, "wtf");
+//var a = navigator.userAgent.match(/WebKit\/([0-9]+)\./)[1]
+//console.log(a);
+
     var channels = {};
     var currentUserUUID = Math.round(Math.random() * 60535) + 5000;
-    var eventSource = new EventSource("primary");
-
-    eventSource.onmessage =  function(e) {
-        console.log(e);
-
-        data = JSON.parse(e.data);
-
-        if(data.sender == currentUserUUID) {
-            console.log("is mee");
-            return;
-        }
-
-        if (channels[data.channel] && channels[data.channel].onmessage) {
-            channels[data.channel].onmessage(data.message);
-        };
-    };
+    var eventSource = null;
 
     var connection = new RTCMultiConnection();
 
@@ -29,6 +19,26 @@ window.addEventListener("load", function() {
     connection.sdpConstraints.mandatory = {};
 
     connection.openSignalingChannel = function (config) {
+
+      if (eventSource === null) {
+        eventSource = new EventSource("primary");
+
+        eventSource.onmessage =  function(e) {
+          console.log(e);
+
+          data = JSON.parse(e.data);
+
+          if(data.sender == currentUserUUID) {
+            console.log("is mee");
+            return;
+          }
+
+          if (channels[data.channel] && channels[data.channel].onmessage) {
+            channels[data.channel].onmessage(data.message);
+          };
+        };
+      }
+
         var channel = config.channel || this.channel;
         channels[channel] = config;
 

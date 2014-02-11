@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe EventSourcesController do
   describe "#primary" do
-    it "should fetch a message" do
+    it "should fetch a message" do #TODO: spec errors
       get :primary
 
       response.stream.close
