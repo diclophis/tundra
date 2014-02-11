@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+var webrtc_create = function() {
 
   var channels = {};
   var currentUserUUID = Math.round(Math.random() * 60535) + 5000;
@@ -6,26 +6,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
   var connection = new RTCMultiConnection();
 
-  var iceServers = [];
-  iceServers.push({
-    url: "stun:stun.l.google.com:19302"
-  });
-
-  connection.iceServers = iceServers;
-  connection.sdpConstraints.mandatory = {};
+  connection.media.max(320,180);
+  connection.media.min(320,180);
 
   connection.openSignalingChannel = function (config) {
-
+    //TODO: research if making multiple connections makes it faster?
     if (eventSource === null) {
       eventSource = new EventSource("primary");
 
       eventSource.onmessage =  function(e) {
-        console.log(e);
-
         data = JSON.parse(e.data);
 
         if(data.sender == currentUserUUID) {
-          console.log("is mee");
           return;
         }
 
@@ -61,7 +53,6 @@ document.addEventListener("DOMContentLoaded", function() {
   };
 
   connection.onNewSession = function(session) {
-    console.log("!!!!!!", session);
     connection.join(session);
   };
 
@@ -72,4 +63,4 @@ document.addEventListener("DOMContentLoaded", function() {
   document.getElementById("create-room").onclick = function() {
     connection.open("CHEESE");
   };
-});
+};

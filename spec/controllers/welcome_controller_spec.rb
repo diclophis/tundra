@@ -9,7 +9,7 @@ describe WelcomeController do
 
   end
 
-  describe "#store" do #TODO: figure out how to spec this
+  describe "#store" do #TODO: figure out how to spec this.
     it "should send message" do
       post :store
       response.should be_success

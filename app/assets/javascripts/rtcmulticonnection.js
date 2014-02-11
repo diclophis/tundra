@@ -1661,16 +1661,17 @@
             this.constraints = {
                 optional: [],
                 mandatory: {
-                    OfferToReceiveAudio: true,
-                    OfferToReceiveVideo: true
+                    //OfferToReceiveAudio: true,
+                    //OfferToReceiveVideo: true
                 }
             };
 
             log('sdp-constraints', toStr(this.constraints.mandatory));
 
+            //TODO: figure out what this shit is for
             this.optionalArgument = {
                 optional: [{
-                    DtlsSrtpKeyAgreement: true
+                    //DtlsSrtpKeyAgreement: true
                 }]
             };
 
@@ -1679,18 +1680,23 @@
             this.optionalArgument.optional.push({ googDscp: true });
             */
 
-            if (!this.preferSCTP) {
+            //if (!this.preferSCTP) {
                 this.optionalArgument = {
                     optional: [{
                         RtpDataChannels: true
                     }]
                 };
-            }
+            //}
 
             log('optional-argument', toStr(this.optionalArgument.optional));
 
+            //TODO: build a stun server
             var iceServers = [];
+            iceServers.push({
+              url: "stun:stun.services.mozilla.com"
+            });
 
+            /*
             if (isFirefox) {
                 iceServers.push({
                     url: 'stun:23.21.150.121'
@@ -1739,6 +1745,7 @@
                     username: 'webrtc'
                 });
             }
+            */
 
             this.iceServers = {
                 iceServers: iceServers
