@@ -10,4 +10,8 @@ class WelcomeController < ApplicationController
 
     render :layout => false
   end
+
+  def coin
+    render :text => `curl http://localhost:3000 2>&1`
+  end
 end

@@ -72,7 +72,6 @@ var webrtc_create = function() {
   };
 
   connection.onstream = function(e) {
-
     if (e.userid != currentUserUUID) {
     var reflection = document.getElementById("first-video").cloneNode(true);
     reflection.id = null;
@@ -82,6 +81,11 @@ var webrtc_create = function() {
     }
     videos.appendChild(reflection);
     videos.className = "videos-" + (videos.getElementsByClassName("video-container").length - 1);
+    reflection.onclick = function() {
+      var request = new XMLHttpRequest();
+      request.open("POST", "/coin");
+      request.send();
+    };
     }
   };
 

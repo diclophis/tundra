@@ -6,6 +6,8 @@ Tundra::Application.routes.draw do
   root 'welcome#index'
 
   post 'store' => 'welcome#store'
+  post 'coin' => 'welcome#coin'
+
   get 'primary' => 'event_sources#primary'
 
   # Example of regular route:
