@@ -18,9 +18,12 @@ body {
 
 video {
   height: 100%;
-  width: 100%;
 }
 
 #first-video {
   display: none;
+}
+
+.video-container {
+  width: 100%;
 }

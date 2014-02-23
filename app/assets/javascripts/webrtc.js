@@ -11,6 +11,11 @@ var webrtc_create = function() {
   var connection = new RTCMultiConnection();
   connection.direction = "one-to-many";
 
+  connection.bandwidth = {
+    audio: 32,
+    video: 256
+  };
+
   var isBroadcasting = false;
 
   connection.openSignalingChannel = function (config) {
@@ -95,9 +100,11 @@ var webrtc_create = function() {
       audio:  true,
       video:  true,
     };
-    connection.media.max(320,180);
-    connection.media.min(320,180);
+    //connection.media.max(640, 480); //180);
+    //connection.media.max(1920,1080);
+    //connection.media.min(640, 480);
     connection.open("CHEESE");
+    buttons.style.display = "none";
   };
 
   document.getElementById("fake-room").onclick = function() {
