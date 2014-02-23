@@ -1,9 +1,12 @@
+window.skipRTCMultiConnectionLogs = true;
+
 var webrtc_create = function() {
 
   var videos = document.getElementById("videos");
   var channels = {};
   var currentUserUUID = Math.round(Math.random() * 60535) + 5000;
   var eventSource = null;
+  var buttons = document.getElementById("buttons");
 
   var connection = new RTCMultiConnection();
   connection.direction = "one-to-many";
@@ -77,26 +80,36 @@ var webrtc_create = function() {
     }
   };
 
+  if (buttons) {
   document.getElementById("join-room").onclick = function() {
-connection.session = {
-     audio:  false,
-     video:  false,
-};
+    connection.session = {
+       audio:  false,
+       video:  false,
+    };
     connection.connect("CHEESE");
   };
 
   document.getElementById("create-room").onclick = function() {
-isBroadcasting = true;
-connection.session = {
-     audio:  true,
-     video:  true,
-};
-  connection.media.max(320,180);
-  connection.media.min(320,180);
+    isBroadcasting = true;
+    connection.session = {
+      audio:  true,
+      video:  true,
+    };
+    connection.media.max(320,180);
+    connection.media.min(320,180);
     connection.open("CHEESE");
   };
 
   document.getElementById("fake-room").onclick = function() {
     connection.onstream();
   };
+  } else {
+setTimeout(function() {
+    connection.session = {
+       audio:  false,
+       video:  false,
+    };
+    connection.connect("CHEESE");
+}, 2000);
+  }
 };
