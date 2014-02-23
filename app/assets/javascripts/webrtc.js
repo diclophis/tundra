@@ -6,9 +6,9 @@ var webrtc_create = function() {
   var eventSource = null;
 
   var connection = new RTCMultiConnection();
+  connection.direction = "one-to-many";
 
-  connection.media.max(320,180);
-  connection.media.min(320,180);
+  var isBroadcasting = false;
 
   connection.openSignalingChannel = function (config) {
     //TODO: research if making multiple connections makes it faster?
@@ -54,10 +54,18 @@ var webrtc_create = function() {
   };
 
   connection.onNewSession = function(session) {
+    if (!isBroadcasting) {
+      session.session.video = false;
+      session.session.audio = false; 
+      session.session.broadcast = false;
+      session.session.oneway = true;
+    }
     connection.join(session);
   };
 
   connection.onstream = function(e) {
+
+    if (e.userid != currentUserUUID) {
     var reflection = document.getElementById("first-video").cloneNode(true);
     reflection.id = null;
     if (e && e.mediaElement) {
@@ -66,13 +74,25 @@ var webrtc_create = function() {
     }
     videos.appendChild(reflection);
     videos.className = "videos-" + (videos.getElementsByClassName("video-container").length - 1);
+    }
   };
 
   document.getElementById("join-room").onclick = function() {
+connection.session = {
+     audio:  false,
+     video:  false,
+};
     connection.connect("CHEESE");
   };
 
   document.getElementById("create-room").onclick = function() {
+isBroadcasting = true;
+connection.session = {
+     audio:  true,
+     video:  true,
+};
+  connection.media.max(320,180);
+  connection.media.min(320,180);
     connection.open("CHEESE");
   };
 
